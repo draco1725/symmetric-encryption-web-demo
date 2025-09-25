@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Symmetric Encryption Demo (AES-GCM)</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <canvas id="matrix" class="matrix-bg" aria-hidden="true"></canvas>
+    <main class="container">
+      <div class="badge">HACK MODE <span class="blink">●</span></div>
+      <h1 class="glow-title" data-scramble="Symmetric Encryption Demo (AES-GCM)">Symmetric Encryption Demo (AES-GCM)</h1>
+      <p class="lead">Learn how password-based symmetric encryption works in your browser using the Web Crypto API.</p>
+
+      <section class="panel">
+        <h2>Inputs</h2>
+        <label>
+          Password
+          <input id="password" type="password" placeholder="Enter a password" />
+        </label>
+        <label>
+          Plaintext
+          <textarea id="plaintext" rows="5" placeholder="Message to encrypt"></textarea>
+        </label>
+        <div class="row">
+          <button id="btn-encrypt">Encrypt</button>
+          <button id="btn-decrypt" class="secondary">Decrypt</button>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Parameters (Base64)</h2>
+        <div class="grid">
+          <label>
+            Salt (generated on encrypt)
+            <input id="salt" type="text" placeholder="Base64 salt" />
+          </label>
+          <label>
+            IV (generated on encrypt)
+            <input id="iv" type="text" placeholder="Base64 IV" />
+          </label>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Outputs</h2>
+        <label>
+          Ciphertext (Base64)
+          <textarea id="ciphertext" rows="4" placeholder="Base64 ciphertext"></textarea>
+        </label>
+        <label>
+          Decrypted Text
+          <textarea id="decrypted" rows="3" placeholder="Result after decrypt" readonly></textarea>
+        </label>
+      </section>
+
+      <section class="panel info">
+        <h2>How this works</h2>
+        <ol>
+          <li>Generate a random 16-byte <strong>salt</strong> and 12-byte <strong>IV</strong>.</li>
+          <li>Derive a 256-bit <strong>AES-GCM</strong> key from your password using <strong>PBKDF2 (SHA-256)</strong>.</li>
+          <li>Encrypt plaintext with the key and IV to produce ciphertext.</li>
+          <li>To decrypt, provide the same password, salt, and IV.</li>
+        </ol>
+        <p>All crypto happens locally in your browser via the Web Crypto API.</p>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
