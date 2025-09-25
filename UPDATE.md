@@ -1,7 +1,5 @@
 # UPDATE.md
 
-This file provides guidance to WARP (warp.dev) when working with code in this repository.
-
 Project overview
 - Static, browser-based demo of password-derived symmetric encryption using Web Crypto (AES-GCM with a PBKDF2-derived key).
 - No build, lint, or test tooling is configured; files are served statically.
